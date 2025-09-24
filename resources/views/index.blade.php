@@ -18,6 +18,7 @@
              <x-boton class="mt-4">
                 Crear Producto
              </x-boton>
+            
             </form>
             
             
@@ -37,7 +38,8 @@
 
 @push('scripts')
     <!-- Solo carga el script de crear productos -->
-    <script type="module" src="{{ mix('resources/js/services/productos/crearproductos.js') }}"></script>
+    <script type="module" src="{{ mix('resources/js/services/productos/guardarproductos.js') }}"></script>
+
 @endpush
 
    

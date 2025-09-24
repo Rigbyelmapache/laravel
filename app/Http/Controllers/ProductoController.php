@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductoRequest;
 use Illuminate\Http\Request;
 use App\servicio\ProductoService;
+use Illuminate\Http\JsonResponse;
 
 class ProductoController extends Controller
 {
@@ -36,7 +37,7 @@ class ProductoController extends Controller
     public function create()
     {
         //retorna la vista ??????????????????
-        return view('productos.create');
+        //return view('productos.create');
     }
 
     /**
@@ -45,10 +46,15 @@ class ProductoController extends Controller
     public function store(ProductoRequest $request)
     {
         //guardar producto
-      
+       try { 
 
-        $producto = $this->productoService->crearProducto($request->validated());
-        return response()->json($producto, 201);
+           
+           $producto = $this->productoService->crearProducto($request->validated());
+           return response()->json($producto, 201);
+        } catch (\Exception $e) {
+           return response()->json(['error' => $e->getMessage()], 500);
+        }
+     
     }
 
     /**

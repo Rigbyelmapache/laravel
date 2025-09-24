@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [
+            'driver' => 'sanctum',  // Este es el guard de Sanctum
+            'provider' => 'users',
+        ],
+        
     ],
 
     /*

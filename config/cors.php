@@ -18,7 +18,7 @@ return [
     'paths' => ['*'],
 
     'allowed_methods' => ['*'],
-
+// cambiar el url desde aqui o desde el .env
     'allowed_origins' => [env('FRONTEND_URL', 'http://localhost:3000')],
 
     'allowed_origins_patterns' => [],

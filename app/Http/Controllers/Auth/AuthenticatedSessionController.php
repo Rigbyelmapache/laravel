@@ -5,7 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+
+
+
+
 use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
@@ -13,13 +18,38 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): Response
-    {
-        $request->authenticate();
+    // controlador para login 
+    // la funcion create retorna una vista , segun laravel 
+ 
 
-        $request->session()->regenerate();
 
-        return response()->noContent();
+    public function store(LoginRequest $request): JsonResponse
+    {  
+        try{
+
+      $credentials = $request->validate([
+        'email' => ['required', 'string', 'email'],
+        'password' => ['required', 'string'],
+    ]);
+
+    if (!Auth::attempt($credentials)) {
+        return response()->json(['message' => 'Credenciales inválidas'], 422);
+    }
+
+    $user = Auth::user();
+
+    // Generate token using Laravel Sanctum
+    $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'message' => 'Inicio de sesión exitoso',
+               'user' => $user,
+               'access_token' => $token,
+               'redirect' => url('/index')
+            ]);
+
+        }catch(\Illuminate\Validation\ValidationException $e){
+            return response()->json(['message' => 'Credenciales inválidas'], 422);}
     }
 
     /**

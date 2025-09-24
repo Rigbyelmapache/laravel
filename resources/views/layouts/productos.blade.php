@@ -5,18 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Document</title>
     
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-    <header class="bg-gray-600 text-white p-4">
+ 
+    <header class="p-4">
         <div class="container mx-auto">
-            <h1 class="text-2xl font-bold">Mi Aplicación</h1>
+            <h1 class="text-2xl text-center font-bold">IBCORP</h1>
         </div>
     </header>
     <nav class="bg-blue-500 p-2">
