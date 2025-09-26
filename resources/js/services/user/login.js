@@ -30,6 +30,15 @@ document.querySelector('#login-form').addEventListener('submit', async (e) => {
         const result = await loginUser({ email, password });
         console.log('Login exitoso:', result);
         // Redirigir, guardar token, etc.
+       const token = result.access_token;
+        if (token) {
+            localStorage.setItem('authToken', token);
+            console.log('Token guardado en localStorage:', token);
+        } else {
+            console.warn('No se recibió un token');
+        }
+        
+
           if (result.redirect) {
             // Esta línea debe hacer la redirección en el navegador
             window.location.href = result.redirect;

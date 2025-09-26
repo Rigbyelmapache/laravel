@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use App\Models\User;
 
 
 
@@ -36,10 +37,8 @@ class AuthenticatedSessionController extends Controller
         return response()->json(['message' => 'Credenciales inválidas'], 422);
     }
 
-    $user = Auth::user();
-
-    // Generate token using Laravel Sanctum
-    $token = $user->createToken('auth_token')->plainTextToken;
+    $user = User::find(Auth::id());
+    $token = $user->createToken($user->email . '_Token')->plainTextToken;
 
         return response()->json([
             'message' => 'Inicio de sesión exitoso',

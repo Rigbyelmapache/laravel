@@ -8,9 +8,11 @@ const getCsrfCookie = async () => {
 };
 
 
-
-// Agregar producto
 const agregarProducto = async (producto) => {
+    const token = localStorage.getItem('authToken');
+        if (!token) {
+            throw new Error('No estás autenticado. Inicia sesión primero.');
+        }
     await getCsrfCookie();
     try {
         const { data, message } = await post('api/productos', producto);

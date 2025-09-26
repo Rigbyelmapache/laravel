@@ -25,9 +25,12 @@ class ProductoController extends Controller
 
             $productos = $this->productoService->obtenerProductos()->toArray();
             return response()->json(['productos'=>$productos,'message'=>'Productos cargados exitosamente']);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'message' => 'Error de validación',
+                'errors' => $e->errors()
+            ], 422);
+        } 
        
     }
 
@@ -51,8 +54,17 @@ class ProductoController extends Controller
            
            $producto = $this->productoService->crearProducto($request->validated());
            return response()->json($producto, 201);
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'message' => 'Error de validación',
+                'errors' => $e->errors()
+            ], 422);
         } catch (\Exception $e) {
-           return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json([
+                'message' => 'Error interno del servidor',
+                'error' => $e->getMessage()
+            ], 500);
         }
      
     }
@@ -91,17 +103,27 @@ class ProductoController extends Controller
         $validatedData = $request->validate([
             'nombre' => 'required|string|max:255',
             'codigo_producto' => 'required|string',
-            'descripcion' => 'required|numeric',
+            'descripcion' => 'required|string',
             'precio' => 'required|numeric',
-            'marca' => 'required|numeric',
+            'marca' => 'required|string',
             'categoria_id' => 'required|numeric',
         ]);
 
         try {
             $producto = $this->productoService->actualizarProducto($id, $validatedData);
-            return response()->json($producto);
+          
+             return response()->json(['productos'=>$producto,'message'=>'Productos actualizados exitosamente']);
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'message' => 'Error de validación',
+                'errors' => $e->errors()
+            ], 422);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 404);
+            return response()->json([
+                'message' => 'Error interno del servidor',
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
 

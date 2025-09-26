@@ -44,6 +44,7 @@ const get = async (endpoint, headers = {}) => {
             method: 'GET',
             headers: {
                 ...headers,
+                ...getAuthHeaders(),
                 'Content-Type': 'application/json',
             },
         });
@@ -61,6 +62,7 @@ const post = async (endpoint, data, headers = {}) => {
             method: 'POST',
             headers: {
                 ...headers,
+                ...getAuthHeaders(),
                 'Content-Type': 'application/json',
                  // <---- Agrega esto
             },
@@ -77,14 +79,19 @@ const post = async (endpoint, data, headers = {}) => {
 // Función para hacer una petición PUT
 const put = async (endpoint, data, headers = {}) => {
     try {
+        console.log(`📡 PUT hacia: ${API_URL}/${endpoint}`);
         const response = await fetch(`${API_URL}/${endpoint}`, {
             method: 'PUT',
             headers: {
                 ...headers,
+                ...getAuthHeaders(),
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
+             credentials: 'include'
         });
+        
+      
         return await handleResponse(response);
     } catch (error) {
         console.error('Error en PUT:', error.message);
@@ -99,6 +106,7 @@ const del = async (endpoint, headers = {}) => {
             method: 'DELETE',
             headers: {
                 ...headers,
+                 ...getAuthHeaders(),
                 'Content-Type': 'application/json',
             },
         });

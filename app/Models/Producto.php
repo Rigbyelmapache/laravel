@@ -11,6 +11,9 @@ class Producto extends Model
    
     // indicarle el nombre de la tabla
     protected $table = 'productos';
+    protected $primaryKey = 'producto_id';
+    public $incrementing = true;
+    protected $keyType = 'int';
 
     // Definir los campos modificables
     protected $fillable = [

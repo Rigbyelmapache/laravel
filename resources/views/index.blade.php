@@ -8,7 +8,7 @@
         <div class="w-9/10 flex flex-col  m-4 p-4 bg-white rounded shadow gap-10 ">
             
             <form id="producto-form">
-                <input type="text" name="nombre" placeholder="Nombre" required>
+                <input type="text" name="nombre" placeholder="Nombre" required> 
                 <input type="text" name="codigo_producto" placeholder="Código" required>
                 <input type="text" name="descripcion" placeholder="Descripción" required>
                 <input type="number" step="0.01" name="precio" placeholder="Precio" required>
