@@ -32,12 +32,12 @@ const getAuthToken = () => {
     return localStorage.getItem('authToken');
 };
 
-// Función para agregar el token de autenticación a los headers
+
 const getAuthHeaders = () => {
     const token = getAuthToken();
     return token ? { Authorization: `Bearer ${token}` } : {};
 };
-// Función para hacer una petición GET
+
 const get = async (endpoint, headers = {}) => {
     try {
         const response = await fetch(`${API_URL}/${endpoint}`, {
@@ -55,7 +55,7 @@ const get = async (endpoint, headers = {}) => {
     }
 };
 
-// Función para hacer una petición POST
+
 const post = async (endpoint, data, headers = {}) => {
     try {
         const response = await fetch(`${API_URL}/${endpoint}`, {
@@ -76,10 +76,10 @@ const post = async (endpoint, data, headers = {}) => {
     }
 };
 
-// Función para hacer una petición PUT
+
 const put = async (endpoint, data, headers = {}) => {
     try {
-        console.log(`📡 PUT hacia: ${API_URL}/${endpoint}`);
+       
         const response = await fetch(`${API_URL}/${endpoint}`, {
             method: 'PUT',
             headers: {
@@ -99,7 +99,7 @@ const put = async (endpoint, data, headers = {}) => {
     }
 };
 
-// Función para hacer una petición DELETE
+
 const del = async (endpoint, headers = {}) => {
     try {
         const response = await fetch(`${API_URL}/${endpoint}`, {
@@ -118,5 +118,5 @@ const del = async (endpoint, headers = {}) => {
 };
 
 
-// Exportar funciones
+
 export { get, post, put, del, getAuthHeaders };

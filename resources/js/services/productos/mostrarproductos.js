@@ -41,14 +41,14 @@ const obtenerProductos = async () => {
   
     console.log('Mensaje para mostrar:', message);
 
-    // Limpiar tabla y mensaje
+ 
     tbody.innerHTML = '';
     mensaje.textContent = '';
 
      mensaje.classList.remove('bg-green-200', 'bg-red-200');
 
    
-    mensaje.classList.remove('hidden'); // Asegurarse de que el mensaje esté visible
+    mensaje.classList.remove('hidden'); 
 
     // Iterar y agregar filas a la tabla
      mensaje.textContent = message;
@@ -122,14 +122,14 @@ const obtenerProductos = async () => {
     });
       }
       } else {
-        // Estilo para error
+       
         mensaje.classList.add('bg-red-400', 'text-red-800', 'p-2', 'rounded');
     }
 
     setTimeout(() => {
         mensaje.classList.add('hidden') 
         
-    }, 5000);  // 5000 ms = 5 segundos
+    }, 5000);  
 
 };
 

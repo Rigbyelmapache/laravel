@@ -8,7 +8,7 @@
 </p>
 
 ## About Laravel
-hola es mi readmiwithme
+Este proyecto es una aplicación Laravel que utiliza Docker para facilitar la configuración y el entorno de desarrollo.
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
@@ -20,18 +20,27 @@ hola es mi readmiwithme
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## REQUISITOS PREVIOS 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Este proyecto nesecita de lo siguiente para poder ejecutarse correctamente en tu entorno local docker.
+
+- CONTENEDORES DOCKER.
+- MYSQL Y MYSQL WORBENCH.
+- UBUNTU VERSION 30000000000.
+- VISUAL ESTUDIO.
+- GOOGLE CHROME.
 
 You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## Laravel configuracion 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
+- abre tu proyecto en la terminal 
+- ejecutar docker-compose up --build -d
+- docker-compose exec app composer install (para instalar dependencias)
+- docker-compose exec app php artisan key:generate
+- configuracion del archivo .env para la base de daatos
+- ejecutar npm run dev para cargar las vistas blade
 ### Premium Partners
 
 - **[Vehikl](https://vehikl.com)**

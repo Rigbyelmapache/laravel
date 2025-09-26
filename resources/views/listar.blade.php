@@ -24,13 +24,15 @@
         </tr>
         </thead>
         <tbody id="table-list" class="divide-y divide-gray-200">
-        <!-- Los productos se agregarán aquí -->
-        
-        <!-- Más productos -->
+   
+
+
+
+
          </tbody>
         </table>
        <div id="span-mensaje" class=" hidden fixed  left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-md text-sm">
-    <!-- Aquí se mostrará el mensaje -->
+
 </div>
 
 
